@@ -41,7 +41,7 @@ public class MessageService {
 	public Message getMessage(long id){
 		return messages.get(id);
 	}
-	//Just to track on Git
+	//Just to track on Git. Just another one
 	public Message addMessage(Message message){
 		message.setId(messages.size()+1);
 		messages.put(message.getId(),message);
