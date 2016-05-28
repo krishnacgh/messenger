@@ -1,8 +1,13 @@
 package com.appspot.krishnacgh.messenger.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class Message {
@@ -10,9 +15,13 @@ public class Message {
 	private String text;
 	private Date created;
 	private String author;
+	private Map<Long, Comment> comments = new HashMap<Long, Comment>();
+	private List<Link> linkList = new ArrayList<Link>();
 	
 	public Message() {
+		
 	}
+
 	public Message(long id, String text, String author) {
 		super();
 		this.id = id;
@@ -44,6 +53,20 @@ public class Message {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	@XmlTransient
+	public Map<Long, Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Map<Long, Comment> comments) {
+		this.comments = comments;
+	}
 	
+	public List<Link> getLinkList() {
+		return linkList;
+	}
+
+	public void setLinkList(List<Link> linkList) {
+		this.linkList = linkList;
+	}
 	
 }

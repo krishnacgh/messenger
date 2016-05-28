@@ -5,7 +5,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+
 import com.appspot.krishnacgh.messenger.database.DatabaseClass;
+import com.appspot.krishnacgh.messenger.exception.DataNotFoundException;
 import com.appspot.krishnacgh.messenger.model.Message;
 
 public class MessageService {
@@ -39,7 +43,11 @@ public class MessageService {
 	}
 	
 	public Message getMessage(long id){
-		return messages.get(id);
+		Message message = messages.get(id);
+		if(message == null){
+			throw new DataNotFoundException("Could find message with Id: "+id);
+		}
+		return message;
 	}
 	//Just to track on Git. Just another one
 	public Message addMessage(Message message){
